@@ -1,0 +1,13 @@
+.title{
+    text-align: center;
+}
+#container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+.country{
+    border: 2px solid lightblue;
+    padding: 10px;
+    border-radius: 5px;
+}
