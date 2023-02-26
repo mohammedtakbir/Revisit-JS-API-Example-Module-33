@@ -1,7 +1,17 @@
+const loading = document.getElementById('loading');
+const error = document.getElementById('error');
 function loadMeal(search) {
+    loading.innerText = 'loading...'
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
         .then(res => res.json())
-        .then(data => displayMeals(data.meals))
+        .then(data => {
+            displayMeals(data.meals);
+            loading.innerText = '';
+        })
+        .catch(err => {
+            error.innerText = 'Something went wrong';
+            loading.innerText = '';
+        });
 }
 function displayMeals(meals) {
     let i = 0;
@@ -27,9 +37,16 @@ function displayMeals(meals) {
 };
 
 function loadMealDetail(idMeal) {
+    loading.innerText = 'loading...'
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
         .then(res => res.json())
-        .then(data => displayMealDetail(data.meals[0]))
+        .then(data => {
+            displayMealDetail(data.meals[0]);
+            loading.innerText = '';
+        })
+        .catch(err => {
+            loading.innerText = '';
+        });
 };
 
 function displayMealDetail(meal) {
